@@ -1,0 +1,616 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dayout — Case Study</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #ffffff;
+        --ink: #171717;
+        --ink-2: #3f4655;
+        --muted: #8a93a3;
+        --line: #ececf2;
+        --star: #c4b5fd;
+        --purple: #8b5cf6;
+        --chip-bg: #f1ecff;
+        --soft: #f7f5ff;
+        --radius: 24px;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--ink);
+        font-family: Manrope, sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .container {
+        width: 80%;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 32px 0 60px;
+      }
+
+      /* ---------- Top nav ---------- */
+      .nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 15px;
+        font-weight: 600;
+      }
+      .nav .links {
+        display: flex;
+        gap: 24px;
+      }
+      .nav a {
+        transition: opacity 0.2s;
+      }
+      .nav a:hover {
+        opacity: 0.6;
+      }
+
+      /* ---------- Header ---------- */
+      .header {
+        margin-top: 80px;
+      }
+
+      .eyebrow {
+        display: inline-block;
+        background: var(--chip-bg);
+        color: var(--purple);
+        font-size: 14px;
+        font-weight: 600;
+        padding: 4px 12px;
+        border-radius: 8px;
+      }
+
+      .header h1 {
+        margin-top: 18px;
+        font-size: 60px;
+        font-weight: 600;
+        letter-spacing: -0.04em;
+        line-height: 1.1;
+      }
+
+      .header .lede {
+        margin-top: 16px;
+        max-width: 720px;
+        font-size: 20px;
+        font-weight: 500;
+        color: var(--muted);
+        letter-spacing: -0.02em;
+        line-height: 1.6;
+      }
+
+      /* Snapshot / metadata row */
+      .meta {
+        margin-top: 48px;
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 24px;
+        padding: 28px 0;
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+      }
+      .meta dt {
+        font-size: 13px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--muted);
+      }
+      .meta dd {
+        margin-top: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--ink-2);
+        line-height: 1.5;
+      }
+
+      .hero-img {
+        margin-top: 48px;
+        aspect-ratio: 16 / 7;
+        border-radius: var(--radius);
+        background: radial-gradient(
+          circle at 30% 30%,
+          #ffffff,
+          #cfdcff 70%,
+          #bccdfd
+        );
+        display: grid;
+        place-items: center;
+        font-size: 22px;
+        font-weight: 700;
+        color: rgba(0, 0, 0, 0.45);
+      }
+
+      /* ---------- Sections ---------- */
+      .section {
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        gap: 48px;
+        padding: 72px 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .section:last-of-type {
+        border-bottom: 0;
+      }
+
+      .label {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--purple);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+      .label span {
+        display: block;
+        color: var(--muted);
+        margin-bottom: 6px;
+      }
+
+      .body h2 {
+        font-size: 32px;
+        font-weight: 600;
+        letter-spacing: -0.03em;
+        line-height: 1.25;
+        margin-bottom: 18px;
+      }
+      .body p,
+      .body li {
+        font-size: 18px;
+        font-weight: 500;
+        color: var(--ink-2);
+        line-height: 1.7;
+      }
+      .body p + p {
+        margin-top: 16px;
+      }
+      .body ul {
+        padding-left: 22px;
+        margin-top: 12px;
+      }
+      .body li + li {
+        margin-top: 6px;
+      }
+      .body strong {
+        color: var(--ink);
+        font-weight: 700;
+      }
+
+      .placeholder {
+        color: var(--muted);
+        font-style: italic;
+      }
+
+      .tag {
+        display: inline-block;
+        margin-top: 18px;
+        background: var(--chip-bg);
+        color: var(--purple);
+        font-size: 14px;
+        font-weight: 600;
+        padding: 4px 12px;
+        border-radius: 8px;
+      }
+
+      /* Cards (execution, takeaways) */
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        margin-top: 8px;
+      }
+      .card {
+        background: var(--soft);
+        border-radius: 20px;
+        padding: 28px;
+      }
+      .card h3 {
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        margin-bottom: 10px;
+      }
+      .card p {
+        font-size: 16px;
+      }
+      .card .num {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--purple);
+        margin-bottom: 10px;
+      }
+
+      .visual {
+        margin-top: 20px;
+        aspect-ratio: 16 / 9;
+        border-radius: 20px;
+        background: linear-gradient(160deg, #e4dbff, #c4b5fd);
+        display: grid;
+        place-items: center;
+        font-weight: 700;
+        color: rgba(0, 0, 0, 0.45);
+      }
+
+      /* Role split */
+      .split {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+
+      /* Stats */
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        margin-bottom: 28px;
+      }
+      .stat {
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        padding: 24px;
+      }
+      .stat .value {
+        font-size: 40px;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        color: var(--purple);
+      }
+      .stat .what {
+        margin-top: 6px;
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--muted);
+      }
+
+      /* ---------- Footer ---------- */
+      .next {
+        margin-top: 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+        flex-wrap: wrap;
+        padding: 32px;
+        border-radius: var(--radius);
+        background: var(--soft);
+      }
+      .next .title {
+        font-size: 22px;
+        font-weight: 600;
+        letter-spacing: -0.03em;
+      }
+      .next a {
+        font-weight: 600;
+        color: var(--purple);
+      }
+      .next a:hover {
+        opacity: 0.7;
+      }
+
+      /* ---------- Responsive ---------- */
+      @media (max-width: 1000px) {
+        .meta {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+      @media (max-width: 700px) {
+        .container {
+          width: 100%;
+          padding: 24px 16px 40px;
+        }
+        .header {
+          margin-top: 48px;
+        }
+        .header h1 {
+          font-size: 40px;
+        }
+        .header .lede {
+          font-size: 17px;
+        }
+        .meta {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .section {
+          grid-template-columns: 1fr;
+          gap: 16px;
+          padding: 48px 0;
+        }
+        .body h2 {
+          font-size: 26px;
+        }
+        .cards,
+        .split,
+        .stats {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="container">
+      <!-- Top nav -->
+      <nav class="nav">
+        <a href="index.html">Your Name</a>
+        <div class="links">
+          <a href="index.html#work">Work</a>
+          <a href="index.html#about">About</a>
+        </div>
+      </nav>
+
+      <!-- 1. Header + snapshot -->
+      <header class="header">
+        <span class="eyebrow">Social &amp; paid campaign</span>
+        <h1>Dayout</h1>
+        <p class="lede">
+          Building a startup's Instagram presence from scratch and launching an
+          ad campaign for its new paid creator feature.
+        </p>
+
+        <dl class="meta">
+          <div>
+            <dt>Client</dt>
+            <dd>Dayout</dd>
+          </div>
+          <div>
+            <dt>Role</dt>
+            <dd>Digital Marketing Intern</dd>
+          </div>
+          <div>
+            <dt>Year</dt>
+            <dd>2025</dd>
+          </div>
+          <div>
+            <dt>Team</dt>
+            <dd class="placeholder">Marketing</dd>
+          </div>
+          <div>
+            <dt>Channels</dt>
+            <dd>Instagram</dd>
+          </div>
+          <div>
+            <dt>Deliverables</dt>
+            <dd>Ad campaign (concept to rollout), social media assets</dd>
+          </div>
+        </dl>
+
+        <div class="hero-img">Cover image</div>
+      </header>
+
+      <!-- 2. The moment -->
+      <section class="section">
+        <div class="label"><span>01</span>The moment</div>
+        <div class="body">
+          <h2>Setting the stage</h2>
+          <p>
+            Dayout is an app where people share itineraries of places they've
+            been, from trips to daily strolls and city walks. They set the stops
+            and timing, and anyone can follow the same route.
+          </p>
+          <p>
+            To get more people posting, Dayout introduced a paid feature for
+            creators: they can now sell their itineraries on the app. One
+            initiative to launch it was an ad campaign, where I helped
+            strategize the ad and created it, from scripting what to say to
+            filming and editing.
+          </p>
+        </div>
+      </section>
+
+      <!-- 3. The problem / goal -->
+      <section class="section">
+        <div class="label"><span>02</span>The goal</div>
+        <div class="body">
+          <h2>The problem</h2>
+          <p>
+            <strong>Objective:</strong> Drive creator sign-ups and let people
+            know about the new paid feature.
+          </p>
+          <p>
+            <strong>The problem:</strong> As a startup, Dayout had almost no
+            social media presence. No one knew what Dayout was, let alone the
+            brand-new paid feature, and there was no consistent posting schedule
+            on Instagram.
+          </p>
+          <span class="tag">Funnel stage: Awareness → Conversion</span>
+        </div>
+      </section>
+
+      <!-- 4. Audience -->
+      <section class="section">
+        <div class="label"><span>03</span>Audience</div>
+        <div class="body">
+          <h2>Who we were speaking to</h2>
+          <p>
+            Small content creators, and people who want to become content
+            creators.
+          </p>
+          <p class="placeholder">
+            Add what they care about, and any persona work or research you did.
+          </p>
+        </div>
+      </section>
+
+      <!-- 5. Role vs team -->
+      <section class="section">
+        <div class="label"><span>04</span>My role</div>
+        <div class="body">
+          <h2>What I did vs. what the team did</h2>
+          <div class="split">
+            <div class="card">
+              <h3>I…</h3>
+              <ul>
+                <li>
+                  designed and conceptualized 6–8 Instagram assets, including
+                  carousels and reels
+                </li>
+                <li>helped strategize the ad campaign</li>
+                <li>scripted, filmed and edited the ad</li>
+                <li>built the content calendar</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>We…</h3>
+              <ul>
+                <li class="placeholder">e.g. set the target KPI</li>
+                <li class="placeholder">e.g. reviewed and launched the ad</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. Execution -->
+      <section class="section">
+        <div class="label"><span>05</span>Execution</div>
+        <div class="body">
+          <h2>The content itself</h2>
+          <div class="cards">
+            <div class="card">
+              <div class="num">01</div>
+              <h3>Brand introduction</h3>
+              <p>
+                6–8 carousels and reels that explained what Dayout is and
+                sparked a brand presence on Instagram.
+              </p>
+            </div>
+            <div class="card">
+              <div class="num">02</div>
+              <h3>The ad</h3>
+              <p>
+                An Instagram reel ad aimed at small creators and aspiring
+                creators, introducing the chance to sell their itineraries.
+              </p>
+            </div>
+            <div class="card">
+              <div class="num">03</div>
+              <h3>Content calendar</h3>
+              <p>A posting schedule to keep Dayout's Instagram consistent.</p>
+            </div>
+            <div class="card">
+              <div class="num">04</div>
+              <h3>Rollout</h3>
+              <p>Brand awareness first, then the ad, which ran for 10 days.</p>
+            </div>
+          </div>
+          <div class="visual">Screenshots of the reels and carousels</div>
+        </div>
+      </section>
+
+      <!-- 7. Results -->
+      <section class="section">
+        <div class="label"><span>06</span>Results</div>
+        <div class="body">
+          <h2>The impact</h2>
+          <div class="stats">
+            <div class="stat">
+              <div class="value">65–70</div>
+              <div class="what">Creator sign-ups, hitting our target KPI</div>
+            </div>
+            <div class="stat">
+              <div class="value">65K</div>
+              <div class="what">Ad views in 10 days</div>
+            </div>
+            <div class="stat">
+              <div class="value">+30%</div>
+              <div class="what">Follower growth during the campaign</div>
+            </div>
+          </div>
+          <p>
+            <strong>Qualitative:</strong>
+            <span class="placeholder"
+              >Stakeholder feedback, or whether your assets or calendar kept
+              being used.</span
+            >
+          </p>
+        </div>
+      </section>
+
+      <!-- 8. What went wrong -->
+      <section class="section">
+        <div class="label"><span>07</span>Adapting</div>
+        <div class="body">
+          <h2>What went wrong and how I adapted</h2>
+          <p>
+            We kept trying new ideas instead of building on what worked, and saw
+            unfollows and low engagement as a result.
+          </p>
+          <p class="placeholder">
+            How you responded, or what you changed once you noticed.
+          </p>
+        </div>
+      </section>
+
+      <!-- 9. Takeaways -->
+      <section class="section">
+        <div class="label"><span>08</span>Takeaways</div>
+        <div class="body">
+          <h2>What I learned</h2>
+          <div class="cards">
+            <div class="card">
+              <h3>Repeat what works</h3>
+              <p>
+                Not everything needs to be a new idea. Constantly trying new
+                things cost us followers and engagement; turning our
+                best-performing topics into a series would have worked better.
+              </p>
+            </div>
+            <div class="card">
+              <h3>Brand is more than content</h3>
+              <p>
+                I put most of my focus on reels and content and neglected the
+                brand's visual design. More branded designs would have built a
+                stronger, more recognizable visual voice.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10. If I were them -->
+      <section class="section">
+        <div class="label"><span>09</span>Next steps</div>
+        <div class="body">
+          <h2>If I were them…</h2>
+          <ul>
+            <li>
+              Turn the best-performing topics into recurring series, so
+              followers know what to expect.
+            </li>
+            <li>
+              Build a simple visual brand kit (colors, type, templates) so every
+              post looks unmistakably Dayout.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <div class="next">
+        <div class="title">Thanks for reading!</div>
+        <a href="index.html#work">← Back to all work</a>
+      </div>
+    </main>
+  </body>
+</html>
