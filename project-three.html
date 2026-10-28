@@ -1,0 +1,778 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>UW/UX — Case Study</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #ffffff;
+        --ink: #171717;
+        --ink-2: #3f4655;
+        --muted: #8a93a3;
+        --line: #ececf2;
+        --star: #c4b5fd;
+        --purple: #8b5cf6;
+        --chip-bg: #f1ecff;
+        --soft: #f7f5ff;
+        --radius: 24px;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--ink);
+        font-family: Manrope, sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .container {
+        width: 80%;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 32px 0 60px;
+      }
+
+      /* ---------- Top nav ---------- */
+      .nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 15px;
+        font-weight: 600;
+      }
+      .nav .links {
+        display: flex;
+        gap: 24px;
+      }
+      .nav a {
+        transition: opacity 0.2s;
+      }
+      .nav a:hover {
+        opacity: 0.6;
+      }
+
+      /* ---------- Header ---------- */
+      .header {
+        margin-top: 80px;
+      }
+
+      .eyebrow {
+        display: inline-block;
+        background: var(--chip-bg);
+        color: var(--purple);
+        font-size: 14px;
+        font-weight: 600;
+        padding: 4px 12px;
+        border-radius: 8px;
+      }
+
+      .header h1 {
+        margin-top: 18px;
+        font-size: 60px;
+        font-weight: 600;
+        letter-spacing: -0.04em;
+        line-height: 1.1;
+      }
+
+      .header .lede {
+        margin-top: 16px;
+        max-width: 720px;
+        font-size: 20px;
+        font-weight: 500;
+        color: var(--muted);
+        letter-spacing: -0.02em;
+        line-height: 1.6;
+      }
+
+      /* Snapshot / metadata row */
+      .meta {
+        margin-top: 48px;
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 24px;
+        padding: 28px 0;
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+      }
+      .meta dt {
+        font-size: 13px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--muted);
+      }
+      .meta dd {
+        margin-top: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--ink-2);
+        line-height: 1.5;
+      }
+
+      .hero-img {
+        margin-top: 48px;
+        aspect-ratio: 16 / 7;
+        border-radius: var(--radius);
+        background: radial-gradient(
+          circle at 30% 30%,
+          #ffffff,
+          #cfdcff 70%,
+          #bccdfd
+        );
+        display: grid;
+        place-items: center;
+        font-size: 22px;
+        font-weight: 700;
+        color: rgba(0, 0, 0, 0.45);
+      }
+
+      /* ---------- Sections ---------- */
+      .section {
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        gap: 48px;
+        padding: 72px 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .section:last-of-type {
+        border-bottom: 0;
+      }
+
+      .label {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--purple);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+      .label span {
+        display: block;
+        color: var(--muted);
+        margin-bottom: 6px;
+      }
+
+      .body h2 {
+        font-size: 32px;
+        font-weight: 600;
+        letter-spacing: -0.03em;
+        line-height: 1.25;
+        margin-bottom: 18px;
+      }
+      .body p,
+      .body li {
+        font-size: 16px;
+        font-weight: 500;
+        color: var(--ink-2);
+        line-height: 1.7;
+      }
+      .body p + p {
+        margin-top: 16px;
+      }
+      .body ul {
+        padding-left: 22px;
+        margin-top: 12px;
+      }
+      .body li + li {
+        margin-top: 6px;
+      }
+      .body strong {
+        color: var(--ink);
+        font-weight: 700;
+      }
+
+      .placeholder {
+        color: var(--muted);
+        font-style: normal;
+      }
+
+      .tag {
+        display: inline-block;
+        margin-top: 18px;
+        background: var(--chip-bg);
+        color: var(--purple);
+        font-size: 14px;
+        font-weight: 600;
+        padding: 4px 12px;
+        border-radius: 8px;
+      }
+
+      /* Cards (execution, takeaways) */
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        margin-top: 8px;
+      }
+      .card {
+        background: var(--soft);
+        border-radius: 20px;
+        padding: 28px;
+        border: 1px solid transparent;
+        transition:
+          border-color 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+      .card:hover,
+      .deliverable-card:hover {
+        border-color: var(--purple);
+        box-shadow: 0 0 0 1px rgba(139, 92, 246, 0.12);
+      }
+      .deliverable-card {
+        display: block;
+        background: var(--soft);
+        border: 1px solid transparent;
+        border-radius: 20px;
+        padding: 28px;
+        transition:
+          border-color 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+      .card h3 {
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        margin-bottom: 10px;
+      }
+      .card p {
+        font-size: 16px;
+      }
+      .card .num {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--purple);
+        margin-bottom: 10px;
+      }
+
+      .visual {
+        margin-top: 20px;
+        aspect-ratio: 16 / 9;
+        border-radius: 20px;
+        background: linear-gradient(160deg, #e4dbff, #c4b5fd);
+        display: grid;
+        place-items: center;
+        font-weight: 700;
+        color: rgba(0, 0, 0, 0.45);
+      }
+
+      .work-gallery {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+        width: 100%;
+      }
+
+      .work-gallery img {
+        display: block;
+        width: 100%;
+        height: 40vh;
+        border-radius: 20px;
+        border: 1px solid var(--line);
+        object-fit: cover;
+      }
+
+      @media (max-width: 768px) {
+        .work-gallery {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .work-gallery img {
+          height: 25vh;
+        }
+      }
+
+      /* Role split */
+      .split {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+
+      /* Stats */
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        margin-bottom: 28px;
+      }
+      .stat {
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        padding: 24px;
+      }
+      .stat .value {
+        font-size: 40px;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        color: var(--purple);
+      }
+      .stat .what {
+        margin-top: 6px;
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--muted);
+      }
+
+      /* ---------- Campaign overview + stages ---------- */
+      html {
+        scroll-behavior: smooth;
+      }
+
+      .overview {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+      .overview a.card {
+        display: block;
+        transition: transform 0.25s ease;
+      }
+      .overview a.card:hover {
+        transform: translateY(-3px);
+      }
+      .overview .go {
+        margin-top: 14px;
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--purple);
+      }
+
+      .stage {
+        margin-top: 36px;
+      }
+      .stage:first-of-type {
+        margin-top: 0;
+      }
+      .stage > h3 {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--purple);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        margin-bottom: 10px;
+      }
+      .stage .stats {
+        margin-bottom: 16px;
+      }
+
+      @media (max-width: 700px) {
+        .overview {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* ---------- Footer ---------- */
+      .next {
+        margin-top: 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+        flex-wrap: wrap;
+        padding: 32px;
+        border-radius: var(--radius);
+        background: var(--soft);
+      }
+      .next .title {
+        font-size: 22px;
+        font-weight: 600;
+        letter-spacing: -0.03em;
+      }
+      .next a {
+        font-weight: 600;
+        color: var(--purple);
+      }
+      .next a:hover {
+        opacity: 0.7;
+      }
+
+      /* ---------- Responsive ---------- */
+      @media (max-width: 1000px) {
+        .meta {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+      @media (max-width: 700px) {
+        .container {
+          width: 100%;
+          padding: 24px 16px 40px;
+        }
+        .header {
+          margin-top: 48px;
+        }
+        .header h1 {
+          font-size: 40px;
+        }
+        .header .lede {
+          font-size: 17px;
+        }
+        .meta {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .section {
+          grid-template-columns: 1fr;
+          gap: 16px;
+          padding: 48px 0;
+        }
+        .body h2 {
+          font-size: 26px;
+        }
+        .cards,
+        .split,
+        .stats {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="container">
+      <!-- Top nav -->
+      <nav class="nav">
+        <a href="index.html">Kaley Yuen</a>
+        <div class="links">
+          <a href="index.html#work">Work</a>
+          <a href="index.html#about">About</a>
+        </div>
+      </nav>
+
+      <!-- Header + snapshot -->
+      <header class="header">
+        <span class="eyebrow">Student club · Content</span>
+        <h1>UWUX</h1>
+        <p class="lede">
+          A year on the content team at UWUX: three mini campaigns I led, from
+          the first idea to the people who showed up.
+        </p>
+
+        <dl class="meta">
+          <div>
+            <dt>Club</dt>
+            <dd>UWUX</dd>
+          </div>
+          <div>
+            <dt>Team</dt>
+            <dd>Content</dd>
+          </div>
+          <div>
+            <dt>Timeline</dt>
+            <dd>Sept 2025 – Sept 2026</dd>
+          </div>
+          <div>
+            <dt>Channels</dt>
+            <dd class="placeholder">e.g. Instagram, LinkedIn</dd>
+          </div>
+          <div>
+            <dt>Deliverables</dt>
+            <dd class="placeholder">e.g. posts, reels, event promo</dd>
+          </div>
+        </dl>
+
+        <div class="hero-img">Cover image</div>
+      </header>
+
+      <!-- Overview -->
+      <section class="section">
+        <div class="label"><span>00</span>Overview</div>
+        <div class="body">
+          <h2>Campaigns I led</h2>
+          <p class="placeholder">
+            As Content Lead, I direct a team that creates eye-catching, on-brand
+            content to engage Gen Z and drive sign-ups, applications, and event
+            turnout for the design family.
+          </p>
+          <div class="overview" style="margin-top: 28px">
+            <a class="card" href="#campaign-1">
+              <div class="num">01</div>
+              <h3>UWUX X Blueprint “Bloom Designathon"</h3>
+              <p class="placeholder">
+                Promoting the event of a one day designathon host by the two
+                biggest design student clubs in UWaterloo
+              </p>
+              <div class="go">Read ↓</div>
+            </a>
+            <a class="card" href="#campaign-2">
+              <div class="num">02</div>
+              <h3>Spark Design Conference</h3>
+              <p class="placeholder">
+                Promoting the annual design conference featuring industry
+                professionals hosted with UX design club from laurier
+              </p>
+              <div class="go">Read ↓</div>
+            </a>
+            <a class="card" href="#campaign-3">
+              <div class="num">03</div>
+              <h3>Backstage UWUX</h3>
+              <p class="placeholder">
+                Produced funny, relatable behind-the-scenes team reels to boost
+                club visibility
+              </p>
+              <div class="go">Read ↓</div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== Campaign 1 ===================== -->
+      <section class="section" id="campaign-1">
+        <div class="label"><span>01</span>Campaign</div>
+        <div class="body">
+          <h2>Bloom Designathon</h2>
+
+          <div class="stage">
+            <h3>Campaign Objective</h3>
+            <p class="placeholder">
+              Promoting the event of a one day designathon host by the two
+              biggest design student clubs in UWaterloo, by creating
+              attention-grabbing event content that reaches the right audience,
+              sharing key details, and driving sign-ups and attendance.
+            </p>
+          </div>
+
+          <div class="stage">
+            <h3>Marketing brainstorm</h3>
+            <p class="placeholder">
+              Our thought process: Creating teasers to hint at collaboration +
+              Introducing our event with a major trend (something that never
+              fails) + two reels on the day of (interviewing attendees) + recap
+              post
+            </p>
+          </div>
+
+          <div class="stage">
+            <h3>What I delivered: Click to watch</h3>
+            <div class="cards">
+              <a
+                class="deliverable-card"
+                href="https://example.com/bloom-teaser-video"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <h3>Teasing event with "Gee"</h3>
+                <p class="placeholder">
+                  e.g. Eyecatching teasar post with a trending song to hint at
+                  collaboration
+                </p>
+              </a>
+              <a
+                class="deliverable-card"
+                href="https://example.com/bloom-recap-post"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <h3>Design-a-thon Recap Post</h3>
+                <p class="placeholder">
+                  A recap summary providing social proof, reachin individuals
+                  that missed it, building anticipation for next event
+                </p>
+              </a>
+            </div>
+            <div class="work-gallery">
+              <img src="assets/Bloompromo1.jpeg" alt="UWUX team content 1" />
+              <img src="assets/Bloompromo2.jpeg" alt="UWUX team content 2" />
+            </div>
+          </div>
+
+          <div class="stage">
+            <h3>Results</h3>
+            <div class="stats">
+              <div class="stat">
+                <div class="value">80+</div>
+                <div class="what">People who showed up</div>
+              </div>
+              <div class="stat">
+                <div class="value">120+</div>
+                <div class="what">Sign-ups / RSVPs</div>
+              </div>
+              <div class="stat">
+                <div class="value">2K+</div>
+                <div class="what">Individuals Reached</div>
+              </div>
+            </div>
+            <p class="placeholder">
+              The designathon was a huge success, and everyone had SO MUCH FUN!!
+              I worked on content across the event timeline, from pre-event
+              promos that drove RSVPs to recaps that kept the momentum going. It
+              taught me how each stage of the funnel plays a different role,
+              someone i wish i did better was capturing more moements of
+              behind-the-scenes of the UW/UX execs.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== Campaign 2 ===================== -->
+      <section class="section" id="campaign-2">
+        <div class="label"><span>02</span>Campaign</div>
+        <div class="body">
+          <h2>Spark Design Conference</h2>
+
+          <div class="stage">
+            <h3>Campaign objective</h3>
+            <p class="placeholder">What this campaign set out to do.</p>
+          </div>
+
+          <div class="stage">
+            <h3>Marketing brainstorm</h3>
+            <p class="placeholder">
+              The idea, and how you planned to grab people's attention.
+            </p>
+          </div>
+
+          <div class="stage">
+            <h3>What I delivered: Click to watch</h3>
+            <div class="cards">
+              <div class="card">
+                <h3>Teasing collab UXL X UW/UX</h3>
+                <p class="placeholder">Short description.</p>
+              </div>
+              <div class="card">
+                <h3>"Marry me Juliet" Trend</h3>
+                <p class="placeholder">Short description.</p>
+              </div>
+            </div>
+            <div class="work-gallery">
+              <img
+                src="assets/UWUXsparkpromo1a.jpeg"
+                alt="UWUX team content 1"
+              />
+              <img
+                src="assets/UWUXsparkpromo2.jpeg"
+                alt="UWUX team content 2"
+              />
+              <img
+                src="assets/UWUXsparkpromo2a.jpeg"
+                alt="UWUX team content 2"
+              />
+              <img
+                src="assets/UWUXsparkpromo1.jpeg"
+                alt="UWUX team content 1"
+              />
+            </div>
+          </div>
+
+          <div class="stage">
+            <h3>Results</h3>
+            <div class="stats">
+              <div class="stat">
+                <div class="value">—</div>
+                <div class="what">People who showed up</div>
+              </div>
+              <div class="stat">
+                <div class="value">—</div>
+                <div class="what">Sign-ups / RSVPs</div>
+              </div>
+              <div class="stat">
+                <div class="value">—</div>
+                <div class="what">Reach or engagement</div>
+              </div>
+            </div>
+            <p class="placeholder">Any context for the numbers.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== Campaign 3 ===================== -->
+      <section class="section" id="campaign-3">
+        <div class="label"><span>03</span>Campaign</div>
+        <div class="body">
+          <h2>UW/UX Backstage</h2>
+
+          <div class="stage">
+            <h3>Campaign objective</h3>
+            <p class="placeholder">
+              Boost club visibility and deepenaudience connections
+            </p>
+          </div>
+
+          <div class="stage">
+            <h3>Marketing brainstorm</h3>
+            <p class="placeholder">
+              Just to have fun and keep record of snippets of our team culture
+              and school-club relavant trends
+            </p>
+          </div>
+
+          <div class="stage">
+            <h3>What I delivered: Click to watch</h3>
+            <div class="cards">
+              <div class="card">
+                <h3>I feel like your just here for the food</h3>
+                <p class="placeholder">description</p>
+              </div>
+              <div class="card">
+                <h3>When our coprez is in prez mode</h3>
+                <p class="placeholder">Short description.</p>
+              </div>
+            </div>
+            <div class="work-gallery">
+              <img
+                src="assets/UWUXteamcontent1.jpeg"
+                alt="UWUX team content 1"
+              />
+              <img
+                src="assets/UWUXteamcontent1a.jpeg"
+                alt="UWUX team content 1"
+              />
+              <img
+                src="assets/UWUXteamcontent2.jpeg"
+                alt="UWUX team content 2"
+              />
+              <img
+                src="assets/UWUXteamcontent2a.jpeg"
+                alt="UWUX team content 2"
+              />
+            </div>
+          </div>
+
+          <div class="stage">
+            <h3>Results</h3>
+            <div class="stats">
+              <div class="stat">
+                <div class="value">90%+</div>
+                <div class="what">New audience base</div>
+              </div>
+              <div class="stat">
+                <div class="value">30+</div>
+                <div class="what">Follows (from all team content reels)</div>
+              </div>
+              <div class="stat">
+                <div class="value">40k+</div>
+                <div class="what">
+                  Impressions (from all team content reels)
+                </div>
+              </div>
+            </div>
+            <p class="placeholder">
+              Looking back, I wish i had film more team content! They were
+              really fun to film however many team members were not in person so
+              filming content was also a challenge.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <div class="next">
+        <div class="title">Thanks for reading!</div>
+        <a href="index.html#work">← Back to all work</a>
+      </div>
+    </main>
+  </body>
+</html>
