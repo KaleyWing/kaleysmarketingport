@@ -10,6 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
+    <link href="https://fonts.cdnfonts.com/css/open-sauce" rel="stylesheet" />
     <style>
       :root {
         --bg: #ffffff;
@@ -71,8 +72,9 @@
       }
 
       .name-row {
-        display: inline-flex;
-        align-items: center; /* star sits on the same y-axis as the name */
+        display: flex;
+        justify-content: center;
+        align-items: center;
         gap: 16px;
       }
 
@@ -91,6 +93,7 @@
         height: 64px;
         flex-shrink: 0;
         cursor: pointer;
+        margin-left: 8px;
       }
       .star svg {
         width: 100%;
@@ -125,6 +128,45 @@
       }
       .chip:hover {
         background: var(--chip-bg-hover);
+      }
+
+      /* ---------- Cursor ---------- */
+      .cursor-pill {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 9999;
+        pointer-events: none; /* so it never blocks clicks */
+        padding: 6px 10px;
+        border-radius: 999px; /* fully rounded pill */
+        background: #5b6cf0; /* swap for your blue */
+        color: #fff;
+        font-family: "Open Sauce", "Open Sauce Sans", "Inter", sans-serif;
+        font-size: 0.625rem;
+        letter-spacing: 0.08em;
+        white-space: nowrap;
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.6);
+        transition:
+          opacity 0.2s ease,
+          transform 0.2s ease;
+      }
+
+      .cursor-pill.active {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+
+      /* hide the default cursor over thumbnails */
+      .case-thumb {
+        cursor: none;
+      }
+
+      /* don't show on touch devices */
+      @media (hover: none) {
+        .cursor-pill {
+          display: none;
+        }
       }
 
       /* ---------- Tabs ---------- */
@@ -244,12 +286,21 @@
       .about-photo {
         aspect-ratio: 4 / 5;
         border-radius: var(--radius);
+        overflow: hidden;
         background: linear-gradient(160deg, #e4dbff, #c4b5fd);
         display: grid;
         place-items: center;
         font-size: 18px;
         font-weight: 600;
         color: rgba(0, 0, 0, 0.45);
+      }
+      .about-photo img {
+        width: 100%;
+        height: 110%;
+        object-fit: cover;
+        object-position: center 25%;
+        display: block;
+        transform: translateY(-8%);
       }
       .about-text {
         font-size: 18px;
@@ -330,6 +381,7 @@
     </style>
   </head>
   <body>
+    <div class="cursor-pill">VIEW PROJECT</div>
     <main class="container">
       <!-- Hero -->
       <section class="hero">
@@ -344,7 +396,7 @@
             </svg>
           </div>
         </div>
-        <p>Your one-line tagline goes here.</p>
+        <p>A creative marketer with so much passion for brand storytelling.</p>
         <p>
           Currently
           <a
@@ -375,21 +427,21 @@
       <!-- Work -->
       <section id="work" class="panel active">
         <div class="grid">
-          <a class="card" href="project-one.html">
+          <a class="card case-thumb" href="project-one.html">
             <div class="thumb t1">Vertus Group</div>
             <p class="caption">
               Vertus Group<span class="dot">•</span
               ><span> Launching a new social content series</span>
             </p>
           </a>
-          <a class="card" href="project-two.html">
+          <a class="card case-thumb" href="project-two.html">
             <div class="thumb t2">Dayout</div>
             <p class="caption">
               Dayout<span class="dot">•</span
               ><span>Launching a paid creator feature on Instagram</span>
             </p>
           </a>
-          <a class="card" href="project-three.html">
+          <a class="card case-thumb" href="project-three.html">
             <div class="thumb t3">UW/UX</div>
             <p class="caption">
               UW/UX<span class="dot">•</span
@@ -399,7 +451,7 @@
               >
             </p>
           </a>
-          <a class="card" href="#">
+          <a class="card case-thumb" href="#">
             <div class="thumb t4">Project Four</div>
             <p class="caption">
               Project Four<span class="dot">•</span
@@ -412,7 +464,9 @@
       <!-- About -->
       <section id="about" class="panel">
         <div class="about">
-          <div class="about-photo">Your photo</div>
+          <div class="about-photo">
+            <img src="assets/kaley.JPG" alt="Kaley Yuen" />
+          </div>
           <div class="about-text">
             <p>
               Write a short intro about yourself here — what you do, what you
@@ -517,6 +571,24 @@
         requestAnimationFrame(spin);
       }
       requestAnimationFrame(spin);
+    </script>
+    <script>
+      const pill = document.querySelector(".cursor-pill");
+      const targets = document.querySelectorAll(".case-thumb");
+
+      // follow the mouse
+      window.addEventListener("mousemove", (e) => {
+        pill.style.left = e.clientX + "px";
+        pill.style.top = e.clientY + "px";
+      });
+
+      // show/hide on hover
+      targets.forEach((el) => {
+        el.addEventListener("mouseenter", () => pill.classList.add("active"));
+        el.addEventListener("mouseleave", () =>
+          pill.classList.remove("active"),
+        );
+      });
     </script>
   </body>
 </html>
