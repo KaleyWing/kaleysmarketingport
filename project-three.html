@@ -116,10 +116,16 @@
         line-height: 1.5;
       }
 
-      .hero-img {
+      .hero-gallery {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 24px;
         margin-top: 48px;
+      }
+      .hero-img {
         aspect-ratio: 16 / 7;
         border-radius: var(--radius);
+        overflow: hidden;
         background: radial-gradient(
           circle at 30% 30%,
           #ffffff,
@@ -131,6 +137,17 @@
         font-size: 22px;
         font-weight: 700;
         color: rgba(0, 0, 0, 0.45);
+      }
+      .hero-img img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 76%;
+      }
+      .hero-img img.shift-up {
+        height: calc(100% + 50px);
+        transform: translateY(-40px);
       }
 
       /* ---------- Sections ---------- */
@@ -277,6 +294,11 @@
         border: 1px solid var(--line);
         object-fit: cover;
       }
+      .work-gallery img.landscape {
+        grid-column: span 2;
+        height: auto;
+        aspect-ratio: 16 / 9;
+      }
 
       @media (max-width: 768px) {
         .work-gallery {
@@ -403,6 +425,9 @@
           width: 100%;
           padding: 24px 16px 40px;
         }
+        .hero-gallery {
+          grid-template-columns: 1fr;
+        }
         .header {
           margin-top: 48px;
         }
@@ -473,7 +498,14 @@
           </div>
         </dl>
 
-        <div class="hero-img">Cover image</div>
+        <div class="hero-gallery">
+          <div class="hero-img">
+            <img src="assets/team.jpg" alt="UW/UX team" />
+          </div>
+          <div class="hero-img">
+            <img class="shift-up" src="assets/uwux.JPG" alt="UW/UX event" />
+          </div>
+        </div>
       </header>
 
       <!-- Overview -->
@@ -549,7 +581,7 @@
             <div class="cards">
               <a
                 class="deliverable-card"
-                href="https://example.com/bloom-teaser-video"
+                href="https://www.instagram.com/reel/DVhRz93jVsE/?hl=en"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -561,20 +593,24 @@
               </a>
               <a
                 class="deliverable-card"
-                href="https://example.com/bloom-recap-post"
+                href="https://www.instagram.com/reel/DVRyEhNDyPW/?hl=en"
                 target="_blank"
                 rel="noreferrer"
               >
-                <h3>Design-a-thon Recap Post</h3>
+                <h3>Teasar for Collabouration</h3>
                 <p class="placeholder">
-                  A recap summary providing social proof, reachin individuals
-                  that missed it, building anticipation for next event
+                  Introducing the idea of UW blueprint and UW/UX!
                 </p>
               </a>
             </div>
             <div class="work-gallery">
               <img src="assets/Bloompromo1.jpeg" alt="UWUX team content 1" />
               <img src="assets/Bloompromo2.jpeg" alt="UWUX team content 2" />
+              <img
+                class="landscape"
+                src="assets/Bloomteamphoto.JPG"
+                alt="UWUX team at the Bloom Designathon"
+              />
             </div>
           </div>
 
@@ -614,27 +650,46 @@
 
           <div class="stage">
             <h3>Campaign objective</h3>
-            <p class="placeholder">What this campaign set out to do.</p>
+            <p class="placeholder">Promote event and drive signups!</p>
           </div>
 
           <div class="stage">
             <h3>Marketing brainstorm</h3>
             <p class="placeholder">
-              The idea, and how you planned to grab people's attention.
+              Since this was a design conference, we usually expect less sign
+              ups than designathons. Tried to jump on as many trends as we could
+              with initial promotion. We focused more on taking photos and
+              uploading content about the event afterwards, building up the
+              reputation of design conferences at UW/UX.
             </p>
           </div>
 
           <div class="stage">
             <h3>What I delivered: Click to watch</h3>
             <div class="cards">
-              <div class="card">
+              <a
+                class="deliverable-card"
+                href="https://www.instagram.com/reel/DQwkfd9ka_g/?hl=en"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <h3>Teasing collab UXL X UW/UX</h3>
-                <p class="placeholder">Short description.</p>
-              </div>
-              <div class="card">
+                <p class="placeholder">
+                  Using a trendy audio by Bruno Mars showing execs from both
+                  clubs (Waterloo X Laurier)
+                </p>
+              </a>
+              <a
+                class="deliverable-card"
+                href="https://www.instagram.com/reel/DRC_Phbj8B0/?hl=en"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <h3>"Marry me Juliet" Trend</h3>
-                <p class="placeholder">Short description.</p>
-              </div>
+                <p class="placeholder">
+                  Used "Love Story" by taylor swift to HARD LAUNCH the event
+                </p>
+              </a>
             </div>
             <div class="work-gallery">
               <img
@@ -660,19 +715,22 @@
             <h3>Results</h3>
             <div class="stats">
               <div class="stat">
-                <div class="value">—</div>
+                <div class="value">50+</div>
                 <div class="what">People who showed up</div>
               </div>
               <div class="stat">
-                <div class="value">—</div>
+                <div class="value">75+</div>
                 <div class="what">Sign-ups / RSVPs</div>
               </div>
               <div class="stat">
-                <div class="value">—</div>
+                <div class="value">35k</div>
                 <div class="what">Reach or engagement</div>
               </div>
             </div>
-            <p class="placeholder">Any context for the numbers.</p>
+            <p class="placeholder">
+              The sign-ups exceeded our expectations, many students expressed
+              interest in more conferences in the future!
+            </p>
           </div>
         </div>
       </section>
@@ -686,7 +744,7 @@
           <div class="stage">
             <h3>Campaign objective</h3>
             <p class="placeholder">
-              Boost club visibility and deepenaudience connections
+              Boost club visibility and deepen audience connections
             </p>
           </div>
 
@@ -701,14 +759,28 @@
           <div class="stage">
             <h3>What I delivered: Click to watch</h3>
             <div class="cards">
-              <div class="card">
+              <a
+                class="deliverable-card"
+                href="https://www.instagram.com/reel/DPo4x_bESQ3/?hl=en"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <h3>I feel like your just here for the food</h3>
-                <p class="placeholder">description</p>
-              </div>
-              <div class="card">
+                <p class="placeholder">
+                  a fun short clip filmmed at our panel event at Textnow
+                </p>
+              </a>
+              <a
+                class="deliverable-card"
+                href="https://www.instagram.com/reel/DQt_KUtEQ3r/?hl=en"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <h3>When our coprez is in prez mode</h3>
-                <p class="placeholder">Short description.</p>
-              </div>
+                <p class="placeholder">
+                  (Our president is one of the nicest peeople i know)
+                </p>
+              </a>
             </div>
             <div class="work-gallery">
               <img
@@ -734,11 +806,11 @@
             <h3>Results</h3>
             <div class="stats">
               <div class="stat">
-                <div class="value">90%+</div>
+                <div class="value">+90%</div>
                 <div class="what">New audience base</div>
               </div>
               <div class="stat">
-                <div class="value">30+</div>
+                <div class="value">+30</div>
                 <div class="what">Follows (from all team content reels)</div>
               </div>
               <div class="stat">
@@ -750,8 +822,10 @@
             </div>
             <p class="placeholder">
               Looking back, I wish i had film more team content! They were
-              really fun to film however many team members were not in person so
-              filming content was also a challenge.
+              really fun to film (probably my favourite thing to film) Something
+              i rreally wanted to film but didnt get as much opportunities to do
+              are team game reels. In retrospect, I think they would have been a
+              great way to show our team culture!
             </p>
           </div>
         </div>
