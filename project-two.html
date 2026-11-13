@@ -113,21 +113,24 @@
         line-height: 1.5;
       }
 
-      .hero-img {
+      .hero-gallery {
         margin-top: 48px;
-        aspect-ratio: 16 / 7;
-        border-radius: var(--radius);
-        background: radial-gradient(
-          circle at 30% 30%,
-          #ffffff,
-          #cfdcff 70%,
-          #bccdfd
-        );
         display: grid;
-        place-items: center;
-        font-size: 22px;
-        font-weight: 700;
-        color: rgba(0, 0, 0, 0.45);
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+      }
+      .portrait-frame {
+        aspect-ratio: 3 / 4;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        background: var(--soft);
+        overflow: hidden;
+      }
+      .portrait-frame img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
 
       /* ---------- Sections ---------- */
@@ -438,6 +441,10 @@
         .portrait-placeholders--four {
           grid-template-columns: repeat(2, minmax(0, 1fr));
         }
+        .hero-gallery {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 12px;
+        }
       }
     </style>
   </head>
@@ -486,7 +493,17 @@
           </div>
         </dl>
 
-        <div class="hero-img">Cover image</div>
+        <div class="hero-gallery" aria-label="Dayout campaign cover images">
+          <div class="portrait-frame">
+            <img src="assets/dayoutcover1.png" alt="Dayout campaign cover 1" />
+          </div>
+          <div class="portrait-frame">
+            <img src="assets/dayoutcover2.png" alt="Dayout campaign cover 2" />
+          </div>
+          <div class="portrait-frame">
+            <img src="assets/dayoutcover3.png" alt="Dayout campaign cover 3" />
+          </div>
+        </div>
       </header>
 
       <!-- 2. The moment -->
