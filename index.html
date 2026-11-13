@@ -72,13 +72,15 @@
       }
 
       .name-row {
-        display: flex;
-        justify-content: center;
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
         align-items: center;
-        gap: 16px;
+        position: relative;
       }
 
       .hero h1 {
+        grid-column: 2;
+        grid-row: 1;
         font-family: Manrope, sans-serif;
         font-size: 60px;
         font-weight: 600;
@@ -89,11 +91,14 @@
       }
 
       .star {
+        grid-column: 3;
+        grid-row: 1;
+        justify-self: start;
         width: 64px;
         height: 64px;
         flex-shrink: 0;
         cursor: pointer;
-        margin-left: 8px;
+        margin-left: 16px;
       }
       .star svg {
         width: 100%;
@@ -262,8 +267,16 @@
         color: #7d5cff;
       }
       .t4 {
+        position: relative;
         background: linear-gradient(160deg, #2a8fb0, #0f4d6b);
         color: #fff;
+      }
+      .t4::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.4);
+        pointer-events: none;
       }
 
       .caption {
@@ -356,7 +369,7 @@
       }
 
       /* ---------- Responsive ---------- */
-      @media (maxwidth: 700px) {
+      @media (max-width: 700px) {
         .about {
           grid-template-columns: 1fr;
           gap: 28px;
@@ -369,8 +382,9 @@
           font-size: 44px;
         }
         .star {
-          width: 48px;
-          height: 48px;
+          width: 40px;
+          height: 40px;
+          margin-left: 8px;
         }
         .hero p {
           font-size: 16px;
@@ -402,7 +416,10 @@
             </svg>
           </div>
         </div>
-        <p>A creative marketer with so much passion for brand storytelling.</p>
+        <p>
+          Curious marketer with a designer’s eye and a tendency of reimagining
+          how things are done.
+        </p>
         <p>
           Currently
           <a
@@ -460,11 +477,16 @@
               ><span>Marketing at student club!!!!!!</span>
             </p>
           </a>
-          <a class="card case-thumb" href="#">
-            <div class="thumb t4">Coming Soon</div>
-            <p class="caption">
-              Coming Soon<span class="dot">•</span><span>More to come!!!</span>
-            </p>
+          <a
+            class="card case-thumb"
+            href="https://docs.google.com/document/d/1eWzF2RHvbNLliU5uKEr2CxkLLSzt3xLk6bPgnB4sqsQ/edit?usp=sharing"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <div class="thumb t4">
+              <img src="assets/kaleyresume.png" alt="Kaley Yuen's resume" />
+            </div>
+            <p class="caption">My Resume</p>
           </a>
         </div>
       </section>
@@ -484,9 +506,9 @@
               solutions.
             </p>
             <p>
-              In my free time, i dance, i read, and i eat (a lot of) delicious
-              foods. Things i have been enjoying lately: Uketsu's novels,
-              chereography classes, and yogurt bowls (please let me know if you
+              In my free time, I dance, I read, and I eat (a lot of) delicious
+              foods. Things I have been enjoying lately: Uketsu's novels,
+              choreography classes, and yogurt bowls (Please let me know if you
               have a recipe/ combo of your own!!!).
             </p>
           </div>

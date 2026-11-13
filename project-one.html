@@ -108,8 +108,6 @@
         grid-template-columns: repeat(6, 1fr);
         gap: 24px;
         padding: 28px 0;
-        border-top: 1px solid var(--line);
-        border-bottom: 1px solid var(--line);
       }
       .meta dt {
         font-size: 13px;
@@ -125,21 +123,44 @@
         line-height: 1.5;
       }
 
-      .hero-img {
+      .hero-gallery {
         margin-top: 48px;
-        aspect-ratio: 16 / 7;
-        border-radius: var(--radius);
-        background: radial-gradient(
-          circle at 30% 30%,
-          #ffffff,
-          #cfdcff 70%,
-          #bccdfd
-        );
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 16px;
+      }
+      .portrait-frame {
+        position: relative;
+        aspect-ratio: 3 / 4;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        background: var(--soft);
+        overflow: hidden;
+      }
+      .portrait-frame img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .portrait-caption {
+        position: absolute;
+        inset: 0;
         display: grid;
         place-items: center;
-        font-size: 22px;
+        padding: 20px;
+        background: rgba(0, 0, 0, 0.6);
+        color: #fff;
+        font-size: 18px;
         font-weight: 700;
-        color: rgba(0, 0, 0, 0.45);
+        line-height: 1.4;
+        text-align: center;
+        opacity: 0;
+        transition: opacity 0.25s ease;
+      }
+      .portrait-frame:hover .portrait-caption,
+      .portrait-frame:focus-visible .portrait-caption {
+        opacity: 1;
       }
 
       /* ---------- Sections ---------- */
@@ -343,6 +364,10 @@
         .stats {
           grid-template-columns: 1fr;
         }
+        .hero-gallery {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 12px;
+        }
       }
     </style>
   </head>
@@ -389,7 +414,30 @@
           </div>
         </dl>
 
-        <div class="hero-img">Cover image</div>
+        <div class="hero-gallery" aria-label="Four portrait image frames">
+          <div class="portrait-frame" tabindex="0">
+            <img src="assets/vertuscover1.png" alt="Vertus Group cover 1" />
+            <span class="portrait-caption">Managing their Linkedin Page</span>
+          </div>
+          <div class="portrait-frame" tabindex="0">
+            <img src="assets/vertuscover2.png" alt="Vertus Group cover 2" />
+            <span class="portrait-caption"
+              >Producing their company podcast!</span
+            >
+          </div>
+          <div class="portrait-frame" tabindex="0">
+            <img src="assets/vertuscover3.png" alt="Vertus Group cover 3" />
+            <span class="portrait-caption"
+              >Writing blogs and Press Release!!</span
+            >
+          </div>
+          <div class="portrait-frame" tabindex="0">
+            <img src="assets/vertuscover4.jpeg" alt="Vertus Group cover 4" />
+            <span class="portrait-caption"
+              >My first day going into office (I was so nervous eeek)</span
+            >
+          </div>
+        </div>
       </header>
 
       <!-- 2. The moment -->
@@ -457,9 +505,7 @@
               <div class="what">Follower growth</div>
             </div>
           </div>
-          <p class="placeholder">
-            Add click-throughs or qualitative feedback here.
-          </p>
+          <p class="placeholder">Still an ongoing project...</p>
         </div>
       </section>
 
